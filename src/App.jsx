@@ -11,27 +11,35 @@ export const Debugar = createContext('nao');
 
 
 function App() {
-  const [count, setCount] = useState(0);
+  //  formulario
+  const [username, setUsername] = useState(0);
 
-  let user = { 'id': 123 , 'nome': 'fulano'};
-  let usuario = useContext(Autenticacao);
-  usuario = { 'id': 123 , 'nome': 'fulano'};
+  // simulando um login
+  const [user, setUser] = useState({ 'id': null  , 'nome': '' });
 
   
-  function handleLogin(event){
-    setCount(event.target.value)
+  function handleInput(event){
+    setUsername(event.target.value);
   }
+  
+  function handleLogin(){
+    
+    // busca login no banco de dados 
+    // ...
+    setUser ( { 'id': 123  , 'nome': username } );
+
+  }
+
   return (
     
     <>
 
       <h1>Exemplo de uso do hook useContext</h1>
       <div className="card">
-        <input  type="text"  name="login" value={count} onChange={handleLogin} />
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        
+          <input  type="text"  name="login" value={username} onChange={handleInput} />
+          <button onClick={handleLogin}>
+            logar
+          </button>
       </div>
 
     <Debugar.Provider value="tudo">
